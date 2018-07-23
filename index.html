@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- responsiveness -->
+  <meta name="viewport" content="width=device-width, initial scale=1.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css" />
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">></script>  
+  <!-- mapbox -->
+  <script src='https://api.mapbox.com/mapbox-gl-js/v0.47.0/mapbox-gl.js'></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v0.47.0/mapbox-gl.css' rel='stylesheet' />
+  <title>Restaurant Reviews</title>
+</head>
+
+<body>
+  <header tabindex="0">
+    <nav id="nav">
+      <h1><a href="/" tabindex="-1">Restaurant Reviews</a></h1>
+    </nav>
+  </header>
+
+  <!-- tabindex for web page navigation accesibility -->
+  <main id="maincontent" tabindex="1">
+    
+    <section id="map-container" aria-label="Area Map">
+      <div id="map" role="application" aria-hidden = 'true'></div>
+    </section>
+    
+    <section tabindex="2">
+      <div class="filter-options">
+
+        <h2>Filter Results</h2>
+          <select id="neighborhoods-select" tabindex="1" aria-label= "Select Neighborhood" name="neighborhoods" onchange="updateRestaurants()">
+          <option value="all">All Neighborhoods</option>
+        </select>
+        
+        <!-- label accesibility -->
+        <label for="neighborhoods-select">neighborhoods-select</label>
+
+	    <select id="cuisines-select" tabindex="2" aria-label="Select Cuisine" name="cuisines" onchange="updateRestaurants()">   <option value="all">All Cuisines</option>
+        </select>
+        <!-- label accesibility -->
+        <label for="cuisines-select">cuisines-select</label>
+
+      </div>
+      <ul id="restaurants-list"></ul>
+    </section>
+  </main>
+
+	<!--Add the map to your site -->
+	<div id='map' style='width: 400px; height: 300px;'></div>
+	<script>
+	  mapboxgl.accessToken = 'pk.eyJ1Ijoic3BlbmkiLCJhIjoiY2pqdmNqMWIwNDFxZTN3czQ2Z3pudnY5byJ9.UYKccgZSi0Iri2_QoyzHbA';
+	  var map = new mapboxgl.Map({
+	    container: 'map',
+	    style: 'mapbox://styles/mapbox/streets-v10'
+	  });
+	</script>
+
+  <script type="application/javascript" charset="utf-8" src="js/dbhelper.js"></script>
+  <script type="application/javascript" charset="utf-8" src="js/main.js"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=pk.eyJ1Ijoic3BlbmkiLCJhIjoiY2pqdmNqMWIwNDFxZTN3czQ2Z3pudnY5byJ9.UYKccgZSi0Iri2_QoyzHbA&libraries=places&callback=initMap"></script>
+
+
+  <footer id="footer">
+    Copyright (c) 2018 <a href="/"><strong>Restaurant Reviews</strong></a> All Rights Reserved.
+  </footer>
+
+</body>
+
+</html>
